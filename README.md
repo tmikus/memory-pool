@@ -1,4 +1,7 @@
 # memory-pool
+[![Build Status](https://travis-ci.org/tmikus/memory-pool.svg?branch=master)](https://travis-ci.org/tmikus/memory-pool)
+[![Dependency Status](https://david-dm.org/tmikus/memory-pool.svg)](https://david-dm.org/tmikus/memory-pool)
+[![devDependency Status](https://david-dm.org/tmikus/memory-pool/dev-status.svg)](https://david-dm.org/tmikus/memory-pool#info=devDependencies)
 
 ## Installation
 
