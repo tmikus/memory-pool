@@ -13,7 +13,11 @@ It's recommended to include this file in your assets pipeline and concatenate it
 
 ## Usage - Node.js
 
+To include the memory pool within Node.js app simply load the module.
 
+```javascript
+var MemoryPool = require("memory-pool");
+```
 
 ## Creating memory pool
 
