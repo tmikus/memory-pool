@@ -31,7 +31,7 @@
         allocate: function ()
         {
             // Expand the array for new element
-            if (!~this.lastFreeIndex)
+            if (this.lastFreeIndex == -1)
             {
                 var objectsArraySize = this.objectsArray.length;
                 var increasedObjectsArraySize = objectsArraySize + this.growBy;

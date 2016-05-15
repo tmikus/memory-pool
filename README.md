@@ -10,9 +10,11 @@ multiple objects of the same type.
 
 Here are benchmark results collected on Google Chrome 50.0.2661.102 m (64-bit) running
 on Windows 10 and Intel i7-3930K@3.2GHz. Source code of the benchmark is available here:
-[benchmark/index.html](benchmark/index.html)
+[benchmark/001-comparison/index.html](benchmark/001-comparison/index.html) and [benchmark/002-average-time/index.html](benchmark/002-average-time/index.html)
 
-![Benchmark results](doc/images/benchmark-results_2016-05-15_12-44.jpg)
+![Benchmark results](doc/images/comparison-benchmark-results_2016-05-15.jpg)
+
+![Benchmark results](doc/images/average-time-results_2016-05-15.jpg)
 
 ## Installation
 
