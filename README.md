@@ -3,6 +3,17 @@
 [![Dependency Status](https://david-dm.org/tmikus/memory-pool.svg)](https://david-dm.org/tmikus/memory-pool)
 [![devDependency Status](https://david-dm.org/tmikus/memory-pool/dev-status.svg)](https://david-dm.org/tmikus/memory-pool#info=devDependencies)
 
+## Introduction
+
+This library implements a very fast memory pool. It can be used in game engines for the purpose of storing
+multiple objects of the same type.
+
+Here are benchmark results collected on Google Chrome 50.0.2661.102 m (64-bit) running
+on Windows 10 and Intel i7-3930K@3.2GHz. Source code of the benchmark is available here:
+[benchmark/index.html](benchmark/index.html)
+
+![Benchmark results](doc/images/benchmark-results_2016-05-15_12-44.jpg)
+
 ## Installation
 
 ```bash
