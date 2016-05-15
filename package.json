@@ -1,6 +1,6 @@
 {
   "name": "memory-pool",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Fast implementation of memory pool in JavaScript.",
   "main": "dist/memory-pool.js",
   "directories": {
