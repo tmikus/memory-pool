@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Memory pool benchmark</title>
+    </head>
+    <body>
+        <h1>Benchmark</h1>
+        <p>
+            This benchmark compares performance of using 'new' keyword and memory-pool for allocating
+            instances of the objects. Test is initialising 1,000,000 instances of same type objects.
+        </p>
+
+        <p>
+            <button id="start-test">Start test</button>
+        </p>
+
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Test name</th>
+                    <th>Time</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>'new' keyword</td>
+                    <td id="without-mp-time">n/a</td>
+                    <td id="without-mp-status">n/a</td>
+                </tr>
+                <tr>
+                    <td>Memory pool</td>
+                    <td id="with-mp-time">n/a</td>
+                    <td id="with-mp-status">n/a</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <script src="../dist/memory-pool.js"></script>
+        <script src="test.js"></script>
+    </body>
+</html>
