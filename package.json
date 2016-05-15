@@ -10,7 +10,17 @@
     "build": "node_modules/.bin/gulp",
     "test": "node_modules/.bin/karma start test/config.js"
   },
-  "author": "Tomasz Mikus <mikus.tomasz@gmail.com>",
+  "contributors": [
+    {
+      "name": "Tomasz Mikus",
+      "email": "mikus.tomasz@gmail.com",
+      "url": "http://tomaszmik.us/"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tmikus/memory-pool"
+  },
   "license": "MIT",
   "devDependencies": {
     "gulp": "^3.9.1",
