@@ -1,29 +1,51 @@
 "use strict";
 
-function TestObject()
+function Vector3(x, y, z)
 {
-    this.doSomething = function ()
-    {
-
-    };
+    this.x = x || 0;
+    this.y = y || 0;
+    this.z = z || 0;
 }
+
+Vector3.prototype =
+{
+    add: function (a, b)
+    {
+        this.x = a.x + b.x;
+        this.y = a.y + b.y;
+        this.z = a.z + b.z;
+    }
+};
+
+function vector3Factory()
+{
+    return new Vector3(0, 0, 0);
+}
+
+var memoryPool = new MemoryPool(3, vector3Factory);
 
 function testWithMP()
 {
-    function testObjectFactory(memoryAddress)
-    {
-        var object = new TestObject();
-        object.memoryAddress = memoryAddress;
-        return object;
-    }
-    var memoryPool = new MemoryPool(1, testObjectFactory);
-
-    var object;
+    var result, a, b;
     for (var index = 0; index < 1000000; index++)
     {
-        object = memoryPool.allocate();
-        object.doSomething();
-        memoryPool.free(object);
+        result = memoryPool.allocate();
+        a = memoryPool.allocate();
+        b = memoryPool.allocate();
+
+        a.x = 1;
+        a.y = 2;
+        a.z = 3;
+
+        b.x = 4;
+        b.y = 5;
+        b.z = 6;
+
+        result.add(a, b);
+
+        memoryPool.free(b);
+        memoryPool.free(a);
+        memoryPool.free(result);
     }
 }
 

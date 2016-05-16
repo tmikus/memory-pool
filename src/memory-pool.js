@@ -6,8 +6,8 @@
     // on the server, or `this` in some virtual machines. We use `self`
     // instead of `window` for `WebWorker` support.
     var root = typeof self == 'object' && self.self === self && self ||
-               typeof global == 'object' && global.global === global && global ||
-               this;
+        typeof global == 'object' && global.global === global && global ||
+        this;
 
     var MEMORY_GROW_STEP = 256;
 
@@ -19,9 +19,10 @@
         this.freeIndicesArray = new Uint32Array(size);
         this.lastFreeIndex = size - 1;
 
-        for (var index = 0; index < size; index++)
+        for (var index = 0, createdObject; index < size; index++)
         {
-            this.objectsArray[index] = objectFactory(index);
+            this.objectsArray[index] = createdObject = objectFactory();
+            createdObject.__memoryAddress__ = index;
             this.freeIndicesArray[index] = index;
         }
     }
@@ -40,9 +41,12 @@
                 this.freeIndicesArray.length = increasedObjectsArraySize;
 
                 var index = 0;
+                var createdObject;
                 do
                 {
-                    this.objectsArray[objectsArraySize] = this.objectFactory(objectsArraySize);
+                    createdObject = this.objectFactory();
+                    createdObject.__memoryAddress__ = objectsArraySize;
+                    this.objectsArray[objectsArraySize] = createdObject;
                     this.freeIndicesArray[index++] = objectsArraySize++;
                 }
                 while(objectsArraySize < increasedObjectsArraySize);
@@ -55,15 +59,14 @@
 
         free: function (object)
         {
-            this.freeIndicesArray[++this.lastFreeIndex] = object.memoryAddress;
+            this.freeIndicesArray[++this.lastFreeIndex] = object.__memoryAddress__;
         }
     };
 
     // Export the memory pool object for Node.js, with
     // backwards-compatibility for their old module API. If we're in
-    // the browser, add `_` as a global object.
-    // (`nodeType` is checked to ensure that `module`
-    // and `exports` are not HTML elements.)
+    // the browser, add `MemoryPool` as a global object.
+    // (`nodeType` is checked to ensure that `module` and `exports` are not HTML elements.)
     if (typeof exports != 'undefined' && !exports.nodeType)
     {
         if (typeof module != 'undefined' && !module.nodeType && module.exports)

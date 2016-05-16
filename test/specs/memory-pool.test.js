@@ -1,8 +1,8 @@
 "use strict";
 
-function simpleObjectFactory(index)
+function simpleObjectFactory()
 {
-    return { memoryAddress: index };
+    return {  };
 }
 
 function checkFreeIndicesArray(pool, expectedValues)
@@ -95,9 +95,9 @@ describe("Memory pool constructor tests.", function ()
     {
         var pool = new MemoryPool(3, objectFactory);
         expect(pool.objectsArray).toEqual([
-            { memoryAddress: 0 },
-            { memoryAddress: 1 },
-            { memoryAddress: 2 }
+            { __memoryAddress__: 0 },
+            { __memoryAddress__: 1 },
+            { __memoryAddress__: 2 }
         ]);
     });
 
@@ -124,7 +124,7 @@ describe("Allocation and freeing without expanding.", function ()
         for (var objectIndex = 0; objectIndex < objectsCount; objectIndex++)
         {
             var object = pool.allocate();
-            expect(object.memoryAddress).toEqual(objectsCount - objectIndex - 1);
+            expect(object.__memoryAddress__).toEqual(objectsCount - objectIndex - 1);
         }
     });
 
@@ -180,10 +180,10 @@ describe("Allocation and freeing without expanding.", function ()
     it("Should have correct objects inside 'objectsArray'.", function ()
     {
         expect(pool.objectsArray).toEqual([
-            { memoryAddress: 0 },
-            { memoryAddress: 1 },
-            { memoryAddress: 2 },
-            { memoryAddress: 3 }
+            { __memoryAddress__: 0 },
+            { __memoryAddress__: 1 },
+            { __memoryAddress__: 2 },
+            { __memoryAddress__: 3 }
         ]);
     });
 

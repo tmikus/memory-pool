@@ -10,11 +10,21 @@ multiple objects of the same type.
 
 Here are benchmark results collected on Google Chrome 50.0.2661.102 m (64-bit) running
 on Windows 10 and Intel i7-3930K@3.2GHz. Source code of the benchmark is available here:
-[benchmark/001-comparison/index.html](benchmark/001-comparison/index.html) and [benchmark/002-average-time/index.html](benchmark/002-average-time/index.html)
+- [benchmark/001-comparison/index.html](benchmark/001-comparison/index.html)
+- [benchmark/002-average-time/index.html](benchmark/002-average-time/index.html)
+- [benchmark/003-comparison-render-loop/index.html](benchmark/003-comparison-render-loop/index.html)
 
-![Benchmark results](doc/images/comparison-benchmark-results_2016-05-15.jpg)
+![Benchmark results](doc/images/comparison-benchmark-results_2016-05-16.jpg)
 
-![Benchmark results](doc/images/average-time-results_2016-05-15.jpg)
+![Benchmark results](doc/images/average-time-results_2016-05-16.jpg)
+
+![Benchmark results](doc/images/render-loop-comparison_2016-05-16.jpg)
+
+Note on the last benchmark the memory graph. First half presents graph of memory usage for MemoryLoop while second contains 'new' keyword.
+
+Also, the cost of Garbage Collection is now more visible than in any other of the benchmarks.
+While 'new' keyword performance dropped twice, Memory Pool retained most of it's speed - the difference is just around 2ms which might be caused
+by external system factors.
 
 ## Installation
 
@@ -40,9 +50,8 @@ var MemoryPool = require("memory-pool");
 The following example creates a homogeneous memory pool. `objectFactory` function creates
 a new EMPTY instance of the object to store in the memory. Memory gets filled with
 the specified amount of elements of the same type. In this example it's 1024 objects of
-a type `foo`. It's REALLY important to add `memoryAddress` property to the object.
-It's necessary for allocation and de-allocation of objects. Library is not checking it
-because of the performance cost of this check.
+a type `foo`. Library adds a custom field to the class '\_\_memoryAddress\_\_' which is used
+for performance reasons. Make sure your objects are not overwriting that field or MemoryPool will break.
 ```javascript
 function foo()
 {
@@ -52,11 +61,9 @@ function foo()
     };
 }
 
-function objectFactory(memoryAddress)
+function objectFactory()
 {
-    var object = new foo();
-    object.memoryAddress = memoryAddress;
-    return object;
+    return new foo();
 }
 
 var size = 1024;
@@ -76,11 +83,9 @@ function foo()
     };
 }
 
-function objectFactory(memoryAddress)
+function objectFactory()
 {
-    var object = new foo();
-    object.memoryAddress = memoryAddress;
-    return object;
+    return new foo();
 }
 
 var size = 1024;
