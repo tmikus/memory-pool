@@ -161,7 +161,7 @@ describe("Allocation and freeing without expanding.", function ()
     });
 });
 
-describe("Allocation and freeing without expanding.", function ()
+describe("Allocation and freeing with expanding.", function ()
 {
     var pool;
 
@@ -189,6 +189,6 @@ describe("Allocation and freeing without expanding.", function ()
 
     it("Should have correct values inside 'freeIndicesArray'.", function ()
     {
-        checkFreeIndicesArray(pool, [1, 0, 3, 2])
+        checkFreeIndicesArray(pool, [1, 2, 3, 0])
     });
 });

@@ -38,7 +38,7 @@
                 var increasedObjectsArraySize = objectsArraySize + this.growBy;
 
                 this.objectsArray.length = increasedObjectsArraySize;
-                this.freeIndicesArray.length = increasedObjectsArraySize;
+                this.freeIndicesArray = new Uint32Array(increasedObjectsArraySize);
 
                 var index = 0;
                 var createdObject;
